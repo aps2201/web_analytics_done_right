@@ -5,9 +5,9 @@ register = template.Library()
 from Crypto.Cipher import AES as aes
 from Crypto import Random as rnd
 from Crypto.Hash import SHA256 as sha
-import os
+from wadr.settings import KEY
 
-KEY = bytes(os.getenv('KEY_AES'),'utf-8')
+#KEY = bytes(os.getenv('KEY_AES'),'utf-8')
 @register.filter(is_safe=True)
 def encrypt(string):
     iv=rnd.new().read(aes.block_size)
@@ -28,9 +28,3 @@ def hasher(string):
     hashing.update(bytes(string,'utf-8'))
     hashish = hashing.hexdigest()
     return hashish
-{
-  "datalayer": "true",
-  "pageType": "blog",
-  "user_enc": "466e1b9b353f51bb551754eb7f9a4cdf6dcb29ff375c3c52cc38faebf0409f7b",
-  "user_hash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
-}
