@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+{% load pycrypto_encrypt_hash %}
+{% block dataLayer %}
+'user_enc':'{{user.get_username|encrypt}}',
+'user_hash':'{{user.get_username|hasher}}',
+{% endblock dataLayer %}
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+
+<div class="col-sm">
+</div>
+
+<div class="col">
+<h1 align='center'>{{page|title}}</h1>
+</div>
+<div class="col-sm">
+</div>
+
+</div>
+
+<div class="row">
+
+
+<div class="col-sm">
+</div>
+
+<div class="col">
+<h1 align='center'
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}</h1>
+</div>
+<div class="col-sm">
+</div>
+
+</div>
+
+<div class="row">
+
+
+<div class="col-sm">
+<p style="border-style:solid;font-size:2em;"><a href="{% url 'blog:index' %}" style="color:black"> <<-- Back To Posts </a><p>
+</div>
+
+<div class="col-8">
+
+<h2 align='center'>{{post.title}}</h2>
+<p>{{post.content}}
+</div>
+<div class="col-sm">
+</div>
+
+</div>
+
+</div>
+{% endblock content%}

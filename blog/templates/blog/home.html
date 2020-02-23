@@ -1,0 +1,73 @@
+{% extends "main.html" %}
+{% load pycrypto_encrypt_hash %}
+
+{% block dataLayer %}
+'user_enc':'{{ user.get_username|encrypt }}',
+'user_hash':'{{ user.get_username|hasher }}',
+{% endblock dataLayer %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+
+<div class="col-sm">
+</div>
+
+<div class="col">
+<h1 align='center'>{{page|title}}</h1>
+</div>
+<div class="col-sm">
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-sm">
+</div>
+
+<div class="col">
+<h2 align='left'>
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}</h1>
+
+<br>
+<br>
+
+
+</div>
+<div class="col-sm">
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm">
+</div>
+<div class="col-8">
+<table style="width:100%">
+<tr>
+<th>Title</th>
+<th>Author</th>
+<th>Date</th>
+<th>Updated</th>
+</tr>
+{% for post in post %}
+<tr>
+<td><a href="post/{{post.post_id}}"> {{post.title}} </a></td>
+<td>{{post.author}}</td>
+<td>{{post.time_created|date:"l, Y-m-d H:i"}}</td>
+<td>{{post.time_lastmodified|date:"l, Y-m-d H:i"}}</td>
+
+</tr>
+{%endfor%}
+</table>
+</div>
+<div class="col-sm">
+</div>
+</div>
+
+</div>
+{% endblock content%}
