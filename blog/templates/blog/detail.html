@@ -53,7 +53,9 @@
 <div class="col-8">
 
 <h2 align='center'>{{post.title}}</h2>
-<p>{{post.content}}
+{% autoescape off %}
+<p>{{post.content}}</p>
+{% endautoescape %}
 </div>
 <div class="col-sm">
 </div>

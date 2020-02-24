@@ -19,7 +19,7 @@ class post(models.Model):
     time_lastmodified = models.DateTimeField(auto_now=True)
     category = models.ForeignKey('blog.category',null=True,on_delete=models.CASCADE)
     slug = models.SlugField(max_length=100, unique=True,null=True)
-    title = models.CharField(max_length = 50)
+    title = models.CharField(max_length = 100)
     content = models.TextField()
     def __str__(self):
         return self.title
