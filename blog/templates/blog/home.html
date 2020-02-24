@@ -2,8 +2,8 @@
 {% load pycrypto_encrypt_hash %}
 
 {% block dataLayer %}
-'user_enc':'{{ user.get_username|encrypt }}',
-'user_hash':'{{ user.get_username|hasher }}',
+    'user_enc':'{{ user.get_username|encrypt }}',
+    'user_hash':'{{ user.get_username|hasher }}',
 {% endblock dataLayer %}
 
 {% block content %}
@@ -51,16 +51,17 @@
 <tr>
 <th>Title</th>
 <th>Author</th>
+<th>Category</th>
 <th>Date</th>
 <th>Updated</th>
 </tr>
 {% for post in post %}
 <tr>
-<td><a href="post/{{post.post_id}}"> {{post.title}} </a></td>
+<td><a href="post/{{post.post_id}}">{{post.title}}</a></td>
 <td>{{post.author}}</td>
+<td>{{post.category}}</td>
 <td>{{post.time_created|date:"l, Y-m-d H:i"}}</td>
 <td>{{post.time_lastmodified|date:"l, Y-m-d H:i"}}</td>
-
 </tr>
 {%endfor%}
 </table>

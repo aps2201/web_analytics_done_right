@@ -3,6 +3,11 @@
 {% block dataLayer %}
 'user_enc':'{{user.get_username|encrypt}}',
 'user_hash':'{{user.get_username|hasher}}',
+'author':'{{post.author}}',
+'title':'{{post.title}}',
+'category':'{{post.category}}',
+'date':'{{post.time_created}}',
+'update':'{{time_lastmodified}}',
 {% endblock dataLayer %}
 {% block content %}
 <div class="container-fluid">

@@ -1,1 +1,5 @@
 {% extends "main.html" %}
+{% block dataLayer %}
+'user_enc':'{{user.get_username|encrypt}}',
+'user_hash':'{{user.get_username|hasher}}',
+{% endblock dataLayer %}
