@@ -1,19 +1,23 @@
 from django.db import models
-
 import uuid
 
 # Create your models here.
+
 class general(models.Model):
     cv_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length = 50)
     middle_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
     about = models.TextField()
-    experience = models.ForeignKey('curvit.experience',null=True,on_delete=models.CASCADE)
-    education = models.ForeignKey('curvit.education',null=True,on_delete=models.CASCADE)
-    certification = models.ForeignKey('curvit.certification',null=True,on_delete=models.CASCADE)
-    volunteering = models.ForeignKey('curvit.volunteering',null=True,on_delete=models.CASCADE)
-    
+    #experience = models.ManyToManyField('curvit.experience')
+    #education = models.ManyToManyField('curvit.education')
+    #certification = models.ManyToManyField('curvit.certification')
+    #volunteering = models.ManyToManyField('curvit.volunteering')
+    user = models.ForeignKey('blog.customUser',on_delete=models.CASCADE)
+    class Meta:
+        verbose_name_plural = "CV Main"
+    def __str__(self):
+        return "{0},{1}".format(self.last_name,self.first_name)
 
 class experience(models.Model):
     exp_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -22,9 +26,12 @@ class experience(models.Model):
     location = models.CharField(max_length = 50)
     start_date = models.DateField()
     end_date = models.DateField()
+    cv = models.ForeignKey('curvit.general',on_delete=models.CASCADE,related_name='exp_cv')
     class Meta:
         verbose_name_plural = "Experience"
         ordering = ['-start_date']
+    def __str__(self):
+        return "{0}|{1}".format(self.company,self.start_date)
 
 class education(models.Model):
     edu_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -33,21 +40,28 @@ class education(models.Model):
     field = models.CharField(max_length = 50)
     start_date = models.DateField()
     end_date = models.DateField()
+    cv = models.ForeignKey('curvit.general',on_delete=models.CASCADE,related_name='edu_cv')
     class Meta:
         verbose_name_plural = "Education"
         ordering = ['-start_date']
+    def __str__(self):
+        return "{0} | {1}".format(self.school,self.start_date)
 
 class certification(models.Model):
     cer_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     certificate = models.CharField(max_length = 50)
     organization = models.CharField(max_length = 50)
     start_date = models.DateField()
-    end_date = models.DateField()
+    end_date = models.DateField(null=False)
     credential_id =  models.CharField(max_length = 50)
     credential_url = models.URLField()
+    cv = models.ForeignKey('curvit.general',on_delete=models.CASCADE,related_name='cer_cv')
     class Meta:
         verbose_name_plural = "Certification"
         ordering = ['-start_date']
+    def __str__(self):
+        return "{0} | {1}".format(self.certificate,self.start_date)
+
 
 class volunteering(models.Model):
     vol_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -56,6 +70,9 @@ class volunteering(models.Model):
     cause = models.CharField(max_length = 50)
     start_date = models.DateField()
     end_date = models.DateField()
+    cv = models.ForeignKey('curvit.general',on_delete=models.CASCADE,related_name='vol_cv')
     class Meta:
         verbose_name_plural = "Volunteering"
         ordering = ['-start_date']
+    def __str__(self):
+        return "{0} {1} | {2}".format(self.organization,self.role,self.start_date)

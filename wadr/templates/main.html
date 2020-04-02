@@ -1,4 +1,5 @@
 {% load static %}
+{% load pycrypto_encrypt_hash %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +7,11 @@
 dataLayer = [{
     'datalayer':'true',
     'pageType':'{{ page }}',
+{% if user.is_authenticated %}
+    'user_enc':'{{ user.get_username|encrypt }}',
+    'user_hash':'{{ user.get_username|hasher }}',
+{% endif %}
+
 {% block dataLayer %}
 {% endblock dataLayer %}
 }];
@@ -47,16 +53,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="container">
 {% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<div class="navbar-nav">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+<div class="navbar-nav w-100 order-2 order-md-0 collapse navbar-collapse" id="navbarSupportedContent">
 
 <a data-nav="home" {% if page == 'home' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %} href="{% url 'home:index' %}">Home</a>
 
 <a data-nav="blog" {% if page == 'blog' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %} href="{% url 'blog:index' %}">Blog</a>
 
 <a data-nav="cv" {% if page == 'curriculum vitae' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %} href="{% url 'curvit:index' %}">CV</a>
+
+<a data-nav="service" {% if page == 'service' %} class="nav-item nav-link active justify-content-end" {% else %} class="nav-item nav-link" {% endif %} href="{% url 'service:index' %}">Jasa</a>
+</div>
+<div class="navbar-nav  w-100">
 </div>
 
-</nav>
+<div class="nav nav-pills w-100 order-3 justify-content-end">
+<a class = "nav-item nav-link active" data-nav="login" href="{% url 'home:login' %}">Masuk</a>
+</div>
+
 {% endblock navbar %}
 </div>
 

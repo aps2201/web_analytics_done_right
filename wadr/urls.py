@@ -21,5 +21,7 @@ urlpatterns = [
     path('',include('home.urls'),name='home'),
     path('blog/',include('blog.urls'),name='blog'),
     path('cv/',include('curvit.urls'),name='curvit'),
+    path('service/',include('service.urls'),name='service'),
+    path('wadr/',include('tutorial.urls'),name='tutorial'),
 
 ]

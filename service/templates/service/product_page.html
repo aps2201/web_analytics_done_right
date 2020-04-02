@@ -1,4 +1,9 @@
 {% extends "main.html" %}
+{% block dataLayer %}
+    'product_id':{{product.product_id}},
+    'product_name':{{product.name}}
+{% endblock dataLayer %}
+
 
 {% block content %}
 <div class="container-fluid">
@@ -23,7 +28,7 @@
 <div class="col">
 <h2 align='left'>
 {% if user.is_authenticated %}
-    <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
+    <p>Your products, {{ user.get_username }}. Thanks for logging in.</p>
 {% endif %}</h1>
 
 <br>
@@ -39,24 +44,10 @@
 <div class="col-sm">
 </div>
 <div class="col-8">
-<table style="width:100%">
-<tr>
-<th>Title</th>
-<th>Author</th>
-<th>Category</th>
-<th>Date</th>
-<th>Updated</th>
-</tr>
-{% for post in post %}
-<tr>
-<td><a href="{{post.get_absolute_url}}">{{post.title}}</a></td>
-<td>{{post.author}}</td>
-<td>{{post.category}}</td>
-<td>{{post.time_created|date:"l, Y-m-d H:i"}}</td>
-<td>{{post.time_lastmodified|date:"l, Y-m-d H:i"}}</td>
-</tr>
-{%endfor%}
-</table>
+<h2 align='center'>{{product.name}}</h2>
+<p>{{product.desc|linebreaks}}</p>
+
+-----
 </div>
 <div class="col-sm">
 </div>

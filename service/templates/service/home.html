@@ -1,5 +1,6 @@
 {% extends "main.html" %}
 
+
 {% block content %}
 <div class="container-fluid">
 <div class="row">
@@ -41,19 +42,17 @@
 <div class="col-8">
 <table style="width:100%">
 <tr>
-<th>Title</th>
-<th>Author</th>
-<th>Category</th>
-<th>Date</th>
-<th>Updated</th>
+<th>Product</th>
+<th>Description</th>
+<th>Price</th>
+<th>Buy</th>
 </tr>
-{% for post in post %}
+{% for prod in product %}
 <tr>
-<td><a href="{{post.get_absolute_url}}">{{post.title}}</a></td>
-<td>{{post.author}}</td>
-<td>{{post.category}}</td>
-<td>{{post.time_created|date:"l, Y-m-d H:i"}}</td>
-<td>{{post.time_lastmodified|date:"l, Y-m-d H:i"}}</td>
+<td><a href="product/{{prod.product_id}}">{{prod.product_name}}</a></td>
+<td>{{prod.product_desc|truncatewords:3}} ...</td>
+<td>{{prod.product_price}}</td>
+<td><a href="#" class="btn btn-primary">Go somewhere</a></td>
 </tr>
 {%endfor%}
 </table>

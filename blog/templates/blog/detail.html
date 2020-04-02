@@ -1,14 +1,12 @@
 {% extends "main.html" %}
-{% load pycrypto_encrypt_hash %}
 {% block dataLayer %}
-'user_enc':'{{user.get_username|encrypt}}',
-'user_hash':'{{user.get_username|hasher}}',
 'author':'{{post.author}}',
 'title':'{{post.title}}',
 'category':'{{post.category}}',
 'date':'{{post.time_created}}',
 'update':'{{post.time_lastmodified}}',
 {% endblock dataLayer %}
+
 {% block content %}
 <div class="container-fluid">
 <div class="row">
@@ -34,8 +32,7 @@
 <h1 align='center'
 {% if user.is_authenticated %}
     <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
-{% else %}
-    <p>Welcome, new user. Please log in.</p>
+
 {% endif %}</h1>
 </div>
 <div class="col-sm">
@@ -47,7 +44,8 @@
 
 
 <div class="col-sm">
-<p style="border-style:solid;font-size:2em;"><a href="{% url 'blog:index' %}" style="color:black"> <<-- Back To Posts </a><p>
+<a href="{% url 'blog:index' %}" style="color:black"><button data-nav="postList" type="button" class="btn btn-light" style="font-size: 1.5em"><- Back to Post List</button>
+</a>
 </div>
 
 <div class="col-8">

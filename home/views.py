@@ -8,3 +8,9 @@ def index(request):
                   'home/home.html',
                   {'page':'home',
                    'motd':motd.objects.latest('time_lastmodified'),})
+
+def login(request):
+    return render(request,
+                  'home/login.html',
+                  {'page':'home',
+                   })

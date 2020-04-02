@@ -9,7 +9,6 @@ from .models import category
 
 admin.site.register(customUser, UserAdmin)
 
-
 @admin.register(post)
 class postAdmin(admin.ModelAdmin):
     pass
