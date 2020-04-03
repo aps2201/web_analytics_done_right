@@ -8,7 +8,7 @@ def index(request):
     return render(request,
                   'tutorial/home.html',
                   {'page':'tutorial',
-                    'tutorial':tutorial.objects.filter(subject__subject='utama'),
+                    'tutorial':tutorial.objects.get(subject__subject='utama'),
                     'menu':tutorial_menu.objects.all(),
                     })
                   
