@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+
+
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+
+<div class="col-sm">
+</div>
+
+<div class="col">
+<h1 align='center'>{{page|title}}</h1>
+</div>
+<div class="col-sm">
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-sm">
+</div>
+
+{% if user.is_authenticated %}
+<div class="col">
+<h2 align='center'>Kamu sudah login</h2>
+<p align='center'>{{motd.content|linebreaks}}</p>
+</div>
+{% else %}
+<div class="col">
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-dark" type="submit">Login</button>
+</form>
+</div>
+{% endif %}
+
+<div class="col-sm">
+</div>
+
+</div>
+</div>
+{% endblock content%}
+
