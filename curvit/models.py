@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
 import uuid
 
 # Create your models here.
@@ -9,11 +11,7 @@ class general(models.Model):
     middle_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
     about = models.TextField()
-    #experience = models.ManyToManyField('curvit.experience')
-    #education = models.ManyToManyField('curvit.education')
-    #certification = models.ManyToManyField('curvit.certification')
-    #volunteering = models.ManyToManyField('curvit.volunteering')
-    user = models.ForeignKey('blog.customUser',on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     class Meta:
         verbose_name_plural = "CV Main"
     def __str__(self):

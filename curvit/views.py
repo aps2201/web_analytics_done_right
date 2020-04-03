@@ -10,9 +10,9 @@ def index(request):
                   {'page':'curriculum vitae',
                    'general':general.objects.get(first_name='Andaru'),
                    'experience':experience.objects.filter(cv__first_name='Andaru'),
-                   #'education':education.objects.all(),
+                   'education':education.objects.all(),
                    'certification':certification.objects.filter(cv__first_name='Andaru'),
-                   #'volunteering':volunteering.objects.all(),
+                   'volunteering':volunteering.objects.all(),
                    })
 
 def detail(request):

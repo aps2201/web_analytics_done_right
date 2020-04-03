@@ -1,12 +1,15 @@
 from django.shortcuts import render
+from .models import tutorial
+from .models import subject
+from .models import tutorial_menu
 
 # Create your views here.
 def index(request): 
     return render(request,
                   'tutorial/home.html',
                   {'page':'tutorial',
-                    'tutorial':tutorial.objects.get(subject='utama'),
-                    #'menu':tutorial.menu.objects.all(),
+                    'tutorial':tutorial.objects.filter(subject__subject='utama'),
+                    'menu':tutorial_menu.objects.all(),
                     })
                   
 def detail(request,tutor_id):
@@ -14,11 +17,11 @@ def detail(request,tutor_id):
                   'tutorial/detail.html',
                   {'page':'tutorial',
                    'tutorial': tutorial.objects.get(tutor_id=tutor_id),
-                   'menu': tutorial.menu.objects.all(),
+                   'menu': tutorial_menu.objects.all(),
                    })
 
 def subject(request):
     return render(request,
                   'tutorial/subject.html',
                   {'page':'blog',
-                   'subject': tutorial.subject.objects.all()})
+                   'subject': subject.objects.all()})

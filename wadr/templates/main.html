@@ -64,13 +64,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <a data-nav="cv" {% if page == 'curriculum vitae' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %} href="{% url 'curvit:index' %}">CV</a>
 
-<a data-nav="service" {% if page == 'service' %} class="nav-item nav-link active justify-content-end" {% else %} class="nav-item nav-link" {% endif %} href="{% url 'service:index' %}">Jasa</a>
+
+<a data-nav="tutorial" {% if page == 'tutorial' %} style="background-color: #53004C; color:#FFFFFF" class="nav-item nav-link active" {% else %} style="background-color: #53004C; color:#7c7c7d" class="nav-item nav-link" {% endif %} href="{% url 'tutorial:index' %}">WADR</a>
+
+<a data-nav="service" {% if page == 'service' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %} href="{% url 'service:index' %}">Jasa</a>
 </div>
 <div class="navbar-nav  w-100">
 </div>
 
 <div class="nav nav-pills w-100 order-3 justify-content-end">
+{% if user.is_authenticated %}
+<a class = "nav-item nav-link active" data-nav="logout" href="{% url 'home:logout' %}">Keluar</a>
+{% else %}
 <a class = "nav-item nav-link active" data-nav="login" href="{% url 'home:login' %}">Masuk</a>
+{% endif %}
 </div>
 
 {% endblock navbar %}

@@ -22,7 +22,6 @@
   <div class="card-body">
     <h5 class="card-title">{{general.first_name}} {{general.middle_name}} {{general.last_name}}</h5>
     <p class="card-text">{{general.about}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
 
@@ -36,9 +35,7 @@
   <div class="card-body">
     <h5 class="card-title">{{exp.company}} {{exp.position}}</h5>
     <p class="card-text">{{exp.location}}</p>
-    <p class="card-text">{{exp.start_date}} to {% if exp.end_date %} {{exp.end_date}} {% else %} present {% endif %}</p>
-
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <p class="card-text">{{exp.start_date|date:"F Y"}} to {% if exp.end_date %} {{exp.end_date|date:"F Y"}} {% else %} present {% endif %}</p>
   </div>
   {% endfor %}
 </div>
@@ -54,9 +51,7 @@
     <h5 class="card-title">{{edu.school}}</h5>
     <p class="card-text">{{edu.degree}}</p>
     <p class="card-text">{{edu.field}}</p>
-    <p class="card-text">{{edu.start_date}} to {% if edu.end_date %} {{edu.end_date}} {% else %} present {% endif %}</p>
-
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <p class="card-text">{{edu.start_date|date:"F Y"}} to {% if edu.end_date %} {{edu.end_date|date:"F Y"}} {% else %} present {% endif %}</p>
   </div>
   {% endfor %}
 </div>
@@ -71,7 +66,7 @@
   <div class="card-body">
     <h5 class="card-title">{{cert.certificate}} from {{cert.organization}}</h5>
     <p class="card-text">{{cert.credential_id}}</p>
-    <p class="card-text">{{cert.start_date}} valid untill {% if cert.end_date %} {{cert.end_date}} {% else %} forever {% endif %}</p>
+    <p class="card-text">{{cert.start_date|date:"F Y"}} valid untill {% if cert.end_date %} {{cert.end_date|date:"F Y"}} {% else %} forever {% endif %}</p>
 
     <a href="{{cert.credential_url}}" target="_blank" class="btn btn-primary">See Certification</a>
   </div>
@@ -90,10 +85,9 @@
     <p class="card-text">{{vol.role}}</p>
     <p class="card-text">{{vol.cause}}</p>
     <p class="card-text">{{vol.start_date}} to {% if vol.end_date %} {{vol.end_date}} {% else %} present {% endif %}</p>
-
-    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
   {% endfor %}
 </div>
+</p>
 </div>
 {% endblock content%}

@@ -42,17 +42,15 @@
 <div class="col-sm-2">
 <div class="card-body sticky-top">
     <h5 class="card-title">Navigator</h5>
-    <p class="card-text"><strong>WADR</strong>
-    <ul>
-    <li>a
-    <li>b
-    <li>c
-    </ul>
+    {% for menu in menu %}
+    <p class="card-text"><strong>{{menu.title}}</strong>
+    {{menu.items|markdown}}
     </p>
-  </div>
+    {% endfor %}
+</div>
 </div>
 <div class="col-8">
-{{ tutorial|markdown }}
+{{ tutorial.content|markdown }}
 </div>
 <div class="col-sm">
 </div>

@@ -3,13 +3,11 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from django.utils.text import slugify
 
 import uuid
 
 # Create your models here.
-
-class customUser(AbstractUser):
-    pass
 
 class post(models.Model):
     post_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -17,7 +15,7 @@ class post(models.Model):
     time_created = models.DateTimeField(auto_now_add=True,auto_now=False)
     time_lastmodified = models.DateTimeField(auto_now=True)
     category = models.ForeignKey('blog.category',null=True,on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=100, unique=True,null=True)
+    slug = models.SlugField(max_length=100, unique=True,null=True,blank=True)
     title = models.CharField(max_length = 255)
     content = models.TextField()
     def __str__(self):
@@ -38,7 +36,7 @@ class post(models.Model):
 class category(models.Model):
     cat_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     category = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=100, unique=True,null=True)
+    slug = models.SlugField(max_length=100, unique=True,null=True,blank=True)
     
     def __str__(self):
         return self.category
