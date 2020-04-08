@@ -12,11 +12,11 @@ def index(request):
                     'menu':tutorial_menu.objects.all(),
                     })
                   
-def detail(request,tutor_id):
+def detail(request,slug):
     return render(request,
                   'tutorial/detail.html',
                   {'page':'tutorial',
-                   'tutorial': tutorial.objects.get(tutor_id=tutor_id),
+                   'tutorial': tutorial.objects.get(slug=slug),
                    'menu': tutorial_menu.objects.all(),
                    })
 

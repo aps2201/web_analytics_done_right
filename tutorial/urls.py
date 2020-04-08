@@ -6,7 +6,7 @@ app_name='tutorial'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    re_path(r'^tutorial/(?P<tutor_id>.*)/$', views.detail, name='tutorial'),
+    re_path(r'^tutorial/(?P<slug>.*)/$', views.detail, name='tutorial'),
     path('subject/', views.subject, name='tutorial-subject'),
 ]
 
