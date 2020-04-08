@@ -10,6 +10,7 @@ def index(request):
                   {'page':'tutorial',
                     'tutorial':tutorial.objects.get(subject__subject='utama'),
                     'menu':tutorial_menu.objects.all(),
+                    'menu_items': tutorial_menu.objects.get(tutorial__subject__subject='utama'),
                     })
                   
 def detail(request,slug):
@@ -18,6 +19,7 @@ def detail(request,slug):
                   {'page':'tutorial',
                    'tutorial': tutorial.objects.get(slug=slug),
                    'menu': tutorial_menu.objects.all(),
+                   'menu_items': tutorial_menu.objects.get(tutorial__slug=slug),
                    })
 
 def subject(request):

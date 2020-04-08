@@ -45,7 +45,9 @@
     <h5 class="card-title">Navigator</h5>
     {% for menu in menu %}
     <p class="card-text"><a href="../{{menu.title|slugify}}"><strong>{{menu.title}}</strong></a>
-    {{menu.items|markdown}}
+    {% if menu.title == menu_items.title %}
+    {{menu_items.items|markdown}}
+    {% endif %}
     </p>
     {% endfor %}
 </div>
