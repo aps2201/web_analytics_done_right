@@ -23,7 +23,7 @@ class experience(models.Model):
     position = models.CharField(max_length = 50)
     location = models.CharField(max_length = 50)
     start_date = models.DateField()
-    end_date = models.DateField()
+    end_date = models.DateField(blank=True,null=True)
     cv = models.ForeignKey('curvit.general',on_delete=models.CASCADE,related_name='exp_cv')
     class Meta:
         verbose_name_plural = "Experience"
@@ -37,7 +37,7 @@ class education(models.Model):
     degree = models.CharField(max_length = 50)
     field = models.CharField(max_length = 50)
     start_date = models.DateField()
-    end_date = models.DateField()
+    end_date = models.DateField(blank=True,null=True)
     cv = models.ForeignKey('curvit.general',on_delete=models.CASCADE,related_name='edu_cv')
     class Meta:
         verbose_name_plural = "Education"
@@ -50,7 +50,7 @@ class certification(models.Model):
     certificate = models.CharField(max_length = 50)
     organization = models.CharField(max_length = 50)
     start_date = models.DateField()
-    end_date = models.DateField(null=False)
+    end_date = models.DateField(blank=True,null=True)
     credential_id =  models.CharField(max_length = 50)
     credential_url = models.URLField()
     cv = models.ForeignKey('curvit.general',on_delete=models.CASCADE,related_name='cer_cv')
@@ -67,7 +67,7 @@ class volunteering(models.Model):
     role = models.CharField(max_length = 50)
     cause = models.CharField(max_length = 50)
     start_date = models.DateField()
-    end_date = models.DateField()
+    end_date = models.DateField(blank=True,null=True)
     cv = models.ForeignKey('curvit.general',on_delete=models.CASCADE,related_name='vol_cv')
     class Meta:
         verbose_name_plural = "Volunteering"
