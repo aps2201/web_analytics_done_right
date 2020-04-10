@@ -45,7 +45,7 @@ class category(models.Model):
         return reverse('blog:category', args=[str(self.cat_id)])
     
     def save(self, *args, **kwargs):
-        value = self.title
+        value = self.category
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
         

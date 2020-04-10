@@ -84,7 +84,8 @@
     <h5 class="card-title">{{vol.organization}}</h5>
     <p class="card-text">{{vol.role}}</p>
     <p class="card-text">{{vol.cause}}</p>
-    <p class="card-text">{{vol.start_date}} to {% if vol.end_date %} {{vol.end_date}} {% else %} present {% endif %}</p>
+    <p class="card-text">{{vol.start_date|date:"F Y"}} to {% if vol.end_date %} 
+    {{vol.end_date|date:"F Y"}} {% else %} present {% endif %}</p>
   </div>
   {% endfor %}
 </div>
