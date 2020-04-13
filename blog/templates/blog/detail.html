@@ -1,4 +1,6 @@
 {% extends "main.html" %}
+{% load pandoc_md_html %}
+
 {% block dataLayer %}
 'author':'{{post.author}}',
 'title':'{{post.title}}',
@@ -51,7 +53,7 @@
 <div class="col-8">
 
 <h2 align='center'>{{post.title}}</h2>
-<p>{{post.content|safe|linebreaks}}</p>
+<p>{{post.content|markdown}}</p>
 </div>
 <div class="col-sm">
 </div>
