@@ -7,7 +7,7 @@ def index(request):
     return render(request,
                   'blog/home.html',
                   {'page':'blog',
-                    'post':post.objects.all(),
+                    'post':post.objects.exclude(category__slug='hidden'),
                     })
 
 def detail(request,post_id):
