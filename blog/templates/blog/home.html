@@ -21,10 +21,10 @@
 </div>
 
 <div class="col">
-<h2 align='left'>
+<p>
 {% if user.is_authenticated %}
-    <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
-{% endif %}</h1>
+    <p align='center'>Halo, <strong>{{ user.get_username }}</strong>. Terima kasih sudah login.</p>
+{% endif %}</p>
 
 <br>
 <br>
