@@ -15,6 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.contrib.sitemaps.views import sitemap
+
+app_name='wadr'
+
+from home.sitemaps import blogSitemap,staticSitemap,tutorialSitemap
+sitemaps = {
+    "posts": blogSitemap,
+    "tutorial": tutorialSitemap,
+    "static": staticSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +35,7 @@ urlpatterns = [
     path('cv/',include('curvit.urls'),name='curvit'),
     path('service/',include('service.urls'),name='service'),
     path('wadr/',include('tutorial.urls'),name='tutorial'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
 
 ]
