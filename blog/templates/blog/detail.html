@@ -9,6 +9,10 @@
 'update':'{{post.time_lastmodified}}',
 {% endblock dataLayer %}
 
+{% block title %}
+Sebuah Web - {{page|title}} - {{post.title}}
+{% endblock title %}
+
 {% block content %}
 <div class="container-fluid">
 <div class="row">
